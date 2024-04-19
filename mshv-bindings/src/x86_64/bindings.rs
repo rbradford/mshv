@@ -25691,69 +25691,6 @@ fn bindgen_test_layout_hv_input_issue_psp_guest_request() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Default, Copy, Clone, PartialOrd, Ord, PartialEq, Eq)]
-pub struct mshv_user_mem_region {
-    pub size: __u64,
-    pub guest_pfn: __u64,
-    pub userspace_addr: __u64,
-    pub flags: __u32,
-}
-#[test]
-fn bindgen_test_layout_mshv_user_mem_region() {
-    const UNINIT: ::std::mem::MaybeUninit<mshv_user_mem_region> = ::std::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::std::mem::size_of::<mshv_user_mem_region>(),
-        32usize,
-        concat!("Size of: ", stringify!(mshv_user_mem_region))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<mshv_user_mem_region>(),
-        8usize,
-        concat!("Alignment of ", stringify!(mshv_user_mem_region))
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).size) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(mshv_user_mem_region),
-            "::",
-            stringify!(size)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).guest_pfn) as usize - ptr as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(mshv_user_mem_region),
-            "::",
-            stringify!(guest_pfn)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).userspace_addr) as usize - ptr as usize },
-        16usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(mshv_user_mem_region),
-            "::",
-            stringify!(userspace_addr)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).flags) as usize - ptr as usize },
-        24usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(mshv_user_mem_region),
-            "::",
-            stringify!(flags)
-        )
-    );
-}
-#[repr(C)]
 #[derive(Debug, Copy, Clone, PartialOrd, Ord, PartialEq, Eq)]
 pub struct mshv_vp_registers {
     pub count: ::std::os::raw::c_int,
@@ -26813,6 +26750,83 @@ fn bindgen_test_layout_mshv_create_vp() {
         )
     );
 }
+pub const MSHV_MAP_GPA_WRITEABLE: _bindgen_ty_4 = 1;
+pub const MSHV_MAP_GPA_EXECUTABLE: _bindgen_ty_4 = 2;
+pub type _bindgen_ty_4 = ::std::os::raw::c_uint;
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, PartialOrd, Ord, PartialEq, Eq)]
+pub struct mshv_user_mem_region {
+    pub size: __u64,
+    pub guest_pfn: __u64,
+    pub userspace_addr: __u64,
+    pub flags: __u8,
+    pub rsvd: [__u8; 7usize],
+}
+#[test]
+fn bindgen_test_layout_mshv_user_mem_region() {
+    const UNINIT: ::std::mem::MaybeUninit<mshv_user_mem_region> = ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<mshv_user_mem_region>(),
+        32usize,
+        concat!("Size of: ", stringify!(mshv_user_mem_region))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<mshv_user_mem_region>(),
+        8usize,
+        concat!("Alignment of ", stringify!(mshv_user_mem_region))
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).size) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(mshv_user_mem_region),
+            "::",
+            stringify!(size)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).guest_pfn) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(mshv_user_mem_region),
+            "::",
+            stringify!(guest_pfn)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).userspace_addr) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(mshv_user_mem_region),
+            "::",
+            stringify!(userspace_addr)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).flags) as usize - ptr as usize },
+        24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(mshv_user_mem_region),
+            "::",
+            stringify!(flags)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).rsvd) as usize - ptr as usize },
+        25usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(mshv_user_mem_region),
+            "::",
+            stringify!(rsvd)
+        )
+    );
+}
 #[repr(C)]
 #[derive(Debug, Default, Copy, Clone, PartialOrd, Ord, PartialEq, Eq)]
 pub struct mshv_irqfd {
@@ -26876,11 +26890,11 @@ fn bindgen_test_layout_mshv_irqfd() {
         )
     );
 }
-pub const mshv_ioeventfd_flag_nr_datamatch: _bindgen_ty_4 = 0;
-pub const mshv_ioeventfd_flag_nr_pio: _bindgen_ty_4 = 1;
-pub const mshv_ioeventfd_flag_nr_deassign: _bindgen_ty_4 = 2;
-pub const mshv_ioeventfd_flag_nr_max: _bindgen_ty_4 = 3;
-pub type _bindgen_ty_4 = ::std::os::raw::c_uint;
+pub const mshv_ioeventfd_flag_nr_datamatch: _bindgen_ty_5 = 0;
+pub const mshv_ioeventfd_flag_nr_pio: _bindgen_ty_5 = 1;
+pub const mshv_ioeventfd_flag_nr_deassign: _bindgen_ty_5 = 2;
+pub const mshv_ioeventfd_flag_nr_max: _bindgen_ty_5 = 3;
+pub type _bindgen_ty_5 = ::std::os::raw::c_uint;
 #[repr(C)]
 #[derive(Debug, Default, Copy, Clone, PartialOrd, Ord, PartialEq, Eq)]
 pub struct mshv_ioeventfd {
@@ -27377,13 +27391,13 @@ fn bindgen_test_layout_mshv_root_hvcall() {
         )
     );
 }
-pub const MSHV_VP_STATE_LAPIC: _bindgen_ty_5 = 0;
-pub const MSHV_VP_STATE_XSAVE: _bindgen_ty_5 = 1;
-pub const MSHV_VP_STATE_SIMP: _bindgen_ty_5 = 2;
-pub const MSHV_VP_STATE_SIEFP: _bindgen_ty_5 = 3;
-pub const MSHV_VP_STATE_SYNTHETIC_TIMERS: _bindgen_ty_5 = 4;
-pub const MSHV_VP_STATE_COUNT: _bindgen_ty_5 = 5;
-pub type _bindgen_ty_5 = ::std::os::raw::c_uint;
+pub const MSHV_VP_STATE_LAPIC: _bindgen_ty_6 = 0;
+pub const MSHV_VP_STATE_XSAVE: _bindgen_ty_6 = 1;
+pub const MSHV_VP_STATE_SIMP: _bindgen_ty_6 = 2;
+pub const MSHV_VP_STATE_SIEFP: _bindgen_ty_6 = 3;
+pub const MSHV_VP_STATE_SYNTHETIC_TIMERS: _bindgen_ty_6 = 4;
+pub const MSHV_VP_STATE_COUNT: _bindgen_ty_6 = 5;
+pub type _bindgen_ty_6 = ::std::os::raw::c_uint;
 #[repr(C)]
 #[derive(Debug, Default, Copy, Clone, PartialOrd, Ord, PartialEq, Eq)]
 pub struct mshv_get_set_vp_state {
