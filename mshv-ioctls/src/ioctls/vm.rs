@@ -760,10 +760,11 @@ mod tests {
             )
         };
         let mem = mshv_user_mem_region {
-            flags: HV_MAP_GPA_READABLE | HV_MAP_GPA_WRITABLE | HV_MAP_GPA_EXECUTABLE,
+            flags: (MSHV_MAP_GPA_WRITEABLE | MSHV_MAP_GPA_EXECUTABLE) as u8,
             guest_pfn: 0x1,
             size: 0x1000,
             userspace_addr: addr as u64,
+            ..Default::default()
         };
 
         vm.map_user_memory(mem).unwrap();
@@ -933,10 +934,11 @@ mod tests {
             )
         } as *mut u8;
         let mem_region = mshv_user_mem_region {
-            flags: HV_MAP_GPA_READABLE | HV_MAP_GPA_WRITABLE | HV_MAP_GPA_EXECUTABLE,
+            flags: (MSHV_MAP_GPA_WRITEABLE | MSHV_MAP_GPA_EXECUTABLE) as u8,
             guest_pfn: 0x0_u64,
             size: mem_size as u64,
             userspace_addr: load_addr as u64,
+            ..Default::default()
         };
         // TODO need more real time testing: validating data,
         // number of bits returned etc.
